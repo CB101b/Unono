@@ -65,9 +65,15 @@ player4=[]
 players = [player1, player2, player3, player4]
 playernames = ['player1', 'player2', 'player3', 'player4']
 
-#needHelp = input('Do you need help? (yes to display, no to continue) ')
-#if needHelp == "yes":
-  #print('nee')
+needHelp = input('Do you need help? (yes to display, no to continue) ')
+if needHelp == "yes":
+  print('Alle spelers ontvangen aan het begin van het spel zeven kaarten. De overgebleven speelkaarten worden gesloten op de speeltafel gelegd, dit wordt ook wel de stock genoemd. Dan zal de eerste kaart van de stock worden opengelegd. De eerste speler kan vervolgens een kaart op deze kaart neerleggen, deze moet of hetzelfde nummer, kleur of symbool hebben. Voorbeeld, er ligt een rode 8, dan mag er een kaart met een 8 of een rode kleur op neergelegd worden. Een Joker kan ook worden neergelegd, dat is een uitzondering.Kan de speler geen kaart neerleggen, dan moet er een kaart van de stock worden gehaald. Deze mag direct neergelegd worden, maar als dat niet kan gaat de beurt over. Mocht een deelnemer nog maar één kaart overhebben, dan moet hij of zij UNO roepen. Vergeet de speler dat en speelt hij het spel uit, dan moeten er twee kaarten van de stock gehaald worden.')
+  print('commands')
+  print('kaarten neerleggen: dit doe je door positie van de kaarten in de spelers hand te zeggen. Van 0 t/m (5),(je begint met tellen bij nul en niet bij 1')
+  print('kaarten pakken: dit doe je door -1 in te voeren.')
+print('continue?')
+input()
+
   #ga ff gekke kaulo help schrijven dreiries
 
 #kaarten uitdelen
@@ -79,23 +85,25 @@ def addCard(playerinv, amount): #function to add a amount of cards to a inventor
     tempcards.pop(plo)
 
 for i in range(len(players)):
-  addCard(players[i], 5)
-  #for y in range(5):
-  #  currentplayerarray = players[i]
-  #  plo = random.randint(0, (len(tempcards)-1))
-  #  currentplayerarray.append(tempcards[plo])
-  #  tempcards.pop(plo)
-  #  print('succ')
+  for y in range(5):
+    currentplayerarray = players[i]
+    plo = random.randint(0, (len(tempcards)-1))
+    currentplayerarray.append(tempcards[plo])
+    tempcards.pop(plo)
+    print(currentplayerarray)
+    print('succ')
 
 # start spel
+
+print(players[1])
 
 playerid = 0
 
 def choosingcard(firstcard, playerid, gamedir):
   for x in range(0, 3, gamedir):
-    nummer = 0
-    topcard = allcards[firstcard]
 
+    topcard = allcards[firstcard]
+    print(playerid)
     topcardnummer = topcard[1]
 
     if topcard == wild1: #If there's a wild card these actions are taken
@@ -110,18 +118,24 @@ def choosingcard(firstcard, playerid, gamedir):
 
     print("\n It's now ", playernames[playerid], "'s turn")
     print ('The card on top is: ', topcard)
-    print ('Your cards: ', x)
+    print ('Your cards: ', players[x])
     
     nummer=int(input('\n Choose a card: '))
     
-    if nummer > (len(x)-1) or nummer < 0: #If the player tpes a invalid number, this happens
+    if nummer > (len(players[x])-1): #If the player tpes a invalid number, this happens
       print('This number is too high or low')
       addCard(x, 1)
       print('Skipping to next player...')
       playerid += gamedir
       choosingcard(firstcard, playerid, gamedir)
     
-    chosencard = x[nummer]
+    if nummer == -1:
+      ding = random.randint(0, (len(tempcards)-1))
+      players[x].append(tempcards[ding])
+      print(players[x])
+      choosingcard(firstcard, playerid, gamedir)
+    
+    chosencard = players[x][nummer]
     
     kleurkaart=chosencard[0]
     nummerkaart=chosencard[1]
