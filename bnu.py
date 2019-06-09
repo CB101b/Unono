@@ -125,7 +125,7 @@ def choosingcard(firstcard, playerid, gamedir):
     elif type(nummer) is int:
       if nummer > (len(players[playerid])-1): #If the player tpes a invalid number, this happens
         print('This number is too high or low')
-        addCard(x, 1)
+        addCard(players[playerid], 1)
         print('Skipping to next player...')
         playerid += gamedir
       
@@ -143,7 +143,7 @@ def choosingcard(firstcard, playerid, gamedir):
       
       if kleurcheck == kleurkaart and chosencard in players[x] or kleurcheck == 5 or nummercheck == nummerkaart:
         print('\n You can place this card on the stack!')
-        if input('Are you sure you want to place this card? ') == "y":
+        if input('Are you sure you want to place this card? (y to place)') == "y":
           #verwijder het kaart uit het players hand en voeg hem toe aan de stapel
           players[playerid].remove(chosencard)
           firstcard = chosencard
