@@ -87,148 +87,98 @@ for i in range(4):
 
 # start spel
 
-def choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard):
-  topcard = allcards[firstcardpos]
-  print (topcard)
-  topcardnummer = topcard[1]
-  topcardtype = topcard[0]
-
-  if topcardtype == 5 and topcardnummer == 0: #If there's a wild card these actions are taken
-    print('\nYou got 2 cards...')
-    addCard(players[playerid], 2)
-    #choosingcard(firstcard, playerid, gamedir, firstcardpos)
-  elif topcardtype == 5 and topcardnummer == 1:
-    addCard(players[playerid], 4)
-    print('\nYou got 4 cards...')
-    #choosingcard(firstcard, playerid, gamedir, firstcardpos)
-  elif topcardnummer == 10:
-    print('\nYou got 2 cards...')
-    addCard(players[playerid], 2)
-    #choosingcard(firstcard, playerid, gamedir, firstcardpos)
-  elif topcardnummer == 12:
-    print('\n Your turn is sadly skipped...')
-    if playerid == 4:
-      if gamedir == 1:
-        playerid = 0
-        choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-      elif gamedir == -1:
-        playerid = 4
-        choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-    else:
-      playerid += gamedir
-      choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-
-  print("\n It's now ", playernames[playerid], "'s turn")
-  print ('The card on top is: ', topcard)
-  print ('Your cards: ', players[playerid])
-  
-  nummer=int(input('\n Choose a card: '))
-
-  if type(nummer) is not int:
-    print('\nNot a valid card number...')
-    print('Skipping turn... \n')
-    if playerid == 4:
-      if gamedir == 1:
-        playerid = 0
-        choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-      elif gamedir == -1:
-        playerid = 4
-        choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-    else:
-      playerid += gamedir
-      choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-
-  elif type(nummer) is int:
-    if nummer > (len(players[playerid])-1): #If the player tpes a invalid number, this happens
-      print('This number is too high or low')
-      addCard(players[playerid], 1)
-      print('Skipping to next player...')
-      if playerid == 4:
-        if gamedir == 1:
-          playerid = 0
-          choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-        elif gamedir == -1:
-          playerid = 4
-          choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-      else:
-        playerid += gamedir
-        choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-
-    chosencard = players[playerid][nummer]
-    
-    kleurkaart=chosencard[0]
-    nummerkaart=chosencard[1]
-    kleurcheck = topcard[0]
-    nummercheck = topcard[1]
-    
-    if kleurcheck == kleurkaart and chosencard in players[playerid] or kleurcheck == 5 or nummercheck == nummerkaart:
-      print('\n You can place this card on the stack!')
-      if input('Are you sure you want to place this card? ') == "y":
-        #verwijder het kaart uit het players hand en voeg hem toe aan de stapel
-        players[playerid].remove(chosencard)
-        #topcard = chosencard
-        #topcard = allcards.index(topcard)
-        if len(players[playerid]) == 0:
-          print(playernames[playerid], ' Has won!')
-        elif nummerkaart == 11:
-          gamedir = -1
-          if playerid == 4:
-              if gamedir == 1:
-                playerid = 0
-                choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-              elif gamedir == -1:
-                playerid = 4
-                choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-          else:
-            playerid += gamedir
-            choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-
-        else:
-          topcard = chosencard
-          if playerid == 4:
-              if gamedir == 1:
-                playerid = 0
-                choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-              elif gamedir == -1:
-                playerid = 4
-                choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-          else:
-            playerid += gamedir
-            choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-
-      else:
-        print('\n Ok, skipping turn...')
-        addCard(players[playerid], 1)
-        if playerid == 4:
-            if gamedir == 1:
-              playerid = 0
-              choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-            elif gamedir == -1:
-              playerid = 4
-              choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-        else:
-          playerid += gamedir
-          choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-
-    else:
-      print('Wrong card...')
-      addCard(players[playerid], 1)
-      if playerid == 4:
-          if gamedir == 1:
-            playerid = 0
-            choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-          elif gamedir == -1:
-            playerid = 4
-            choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-      else:
-        playerid += gamedir
-        choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
-
-
 playerid = 0
+
+def choosingcard(firstcard, playerid, gamedir):
+  for x in range(0, len(players), gamedir):
+
+    topcard = allcards[firstcard]
+    topcardnummer = topcard[1]
+    topcardtype = topcard[0]
+
+    if topcardtype == 5 and topcardnummer == 0: #If there's a wild card these actions are taken
+      print('\nYou got 2 cards...')
+      addCard(players[x], 2)
+      choosingcard(firstcard, playerid, gamedir)
+    elif topcardtype == 5 and topcardnummer == 1:
+      addCard(players[x], 4)
+      print('\nYou got 4 cards...')
+      choosingcard(firstcard, playerid, gamedir)
+    elif topcardnummer == 10:
+      print('\nYou got 2 cards...')
+      addCard(x, 2)
+      choosingcard(firstcard, playerid, gamedir)
+    elif topcardnummer == 12:
+      print('\n Your turn is sadly skipped...')
+      playerid += gamedir
+      choosingcard(firstcard, playerid, gamedir)
+
+    print("\n It's now ", playernames[playerid], "'s turn")
+    print ('The card on top is: ', topcard)
+    print ('Your cards: ', players[x])
+    
+    nummer=int(input('\n Choose a card: '))
+
+    if type(nummer) is not int:
+      print('\nNot a valid card number...')
+      print('Skipping turn... \n')
+      playerid += gamedir
+      choosingcard(firstcard, playerid, gamedir)
+    elif type(nummer) is int:
+      if nummer > (len(players[x])-1): #If the player tpes a invalid number, this happens
+        print('This number is too high or low')
+        addCard(x, 1)
+        print('Skipping to next player...')
+        playerid += gamedir
+        choosingcard(firstcard, playerid, gamedir)
+      
+      if nummer == -1:
+        ding = random.randint(0, (len(tempcards)-1))
+        players[x].append(tempcards[ding])
+        print(players[x])
+        choosingcard(firstcard, playerid, gamedir)
+      
+      chosencard = players[x][nummer]
+      
+      kleurkaart=chosencard[0]
+      nummerkaart=chosencard[1]
+      kleurcheck = topcard[0]
+      nummercheck = topcard[1]
+      
+      if kleurcheck == kleurkaart and chosencard in players[x] or kleurcheck == 5 or nummercheck == nummerkaart:
+        print('\n You can place this card on the stack!')
+        if input('Are you sure you want to place this card? ') == "y":
+          #verwijder het kaart uit het players hand en voeg hem toe aan de stapel
+          players[x].remove(chosencard)
+          firstcard = chosencard
+          firstcard = allcards.index(firstcard)
+          if len(players[x]) == 0:
+            print(playernames[playerid], ' Has won!')
+          elif nummerkaart == 11:
+            gamedir = -1
+            playerid += gamedir
+            choosingcard(firstcard, playerid, gamedir)
+          else:
+            playerid += gamedir
+            choosingcard(firstcard, playerid, gamedir)
+        else:
+          print('\n Ok, skipping turn...')
+          addCard(players[x], 1)
+          playerid += gamedir
+          choosingcard(firstcard, playerid, gamedir)
+      else:
+        addCard(players[x], 1)
+        playerid += gamedir
+        choosingcard(firstcard, playerid, gamedir)
+
+    print ('\n\nRound over starting next round...\n\n')
+    if gamedir == 1:
+      playerid = 0
+    elif gamedir == -1:
+      playerid = 3
+  choosingcard(firstcard, playerid, gamedir)
+
 gamedir = 1
-topcard = 0
-firstcardpos = random.randint(1,len(tempcards))
-firstcard = tempcards[firstcardpos]
-tempcards.pop(firstcardpos)
-choosingcard(firstcard, playerid, gamedir, firstcardpos, topcard)
+p = random.randint(1,len(tempcards))
+tempcards.pop(p)
+choosingcard(p, playerid, gamedir)
