@@ -98,19 +98,18 @@ def choosingcard(firstcard, playerid, gamedir):
     if topcardtype == 5 and topcardnummer == 0: #If there's a wild card these actions are taken
       print('\nYou got 2 cards...')
       addCard(players[playerid], 2)
-      choosingcard(firstcard, playerid, gamedir)
     elif topcardtype == 5 and topcardnummer == 1:
       addCard(players[playerid], 4)
       print('\nYou got 4 cards...')
-      choosingcard(firstcard, playerid, gamedir)
     elif topcardnummer == 10:
       print('\nYou got 2 cards...')
       addCard(players[playerid], 2)
-      choosingcard(firstcard, playerid, gamedir)
-    elif topcardnummer == 12:
+    elif topcardnummer == 11:
       print('\n Your turn is sadly skipped...')
-      playerid += gamedir
-      choosingcard(firstcard, playerid, gamedir)
+      if playerid == 4:
+        playerid = 1
+      else:
+        playerid += 1
 
     print("\n It's now ", playernames[playerid], "'s turn")
     print ('The card on top is: ', topcard)
@@ -122,19 +121,18 @@ def choosingcard(firstcard, playerid, gamedir):
       print('\nNot a valid card number...')
       print('Skipping turn... \n')
       playerid += gamedir
-      choosingcard(firstcard, playerid, gamedir)
+
     elif type(nummer) is int:
       if nummer > (len(players[playerid])-1): #If the player tpes a invalid number, this happens
         print('This number is too high or low')
         addCard(x, 1)
         print('Skipping to next player...')
         playerid += gamedir
-        choosingcard(firstcard, playerid, gamedir)
       
       if nummer == -1:
         ding = random.randint(0, (len(tempcards)-1))
         players[playerid].append(tempcards[ding])
-        choosingcard(firstcard, playerid, gamedir)
+
       
       chosencard = players[playerid][nummer]
       
@@ -152,29 +150,22 @@ def choosingcard(firstcard, playerid, gamedir):
           firstcard = allcards.index(firstcard)
           if len(players[playerid]) == 0:
             print(playernames[playerid], ' Has won!')
-          elif nummerkaart == 11:
-            gamedir = -1
-            playerid += gamedir
-            choosingcard(firstcard, playerid, gamedir)
           else:
             playerid += gamedir
-            choosingcard(firstcard, playerid, gamedir)
         else:
           print('\n Ok, skipping turn...')
           addCard(players[playerid], 1)
           playerid += gamedir
-          choosingcard(firstcard, playerid, gamedir)
       else:
         addCard(players[playerid], 1)
         playerid += gamedir
-        choosingcard(firstcard, playerid, gamedir)
 
-    print ('\n\nRound over starting next round...\n\n')
-    if gamedir == 1:
-      playerid = 0
-    elif gamedir == -1:
-      playerid = 3
-  choosingcard(firstcard, playerid, gamedir)
+  if playerid != 5:
+    choosingcard(firstcard, playerid, gamedir)
+  else:
+    playerid = 1
+    choosingcard(firstcard, playerid, gamedir)
+  
 
 gamedir = 1
 p = random.randint(1,len(tempcards))
