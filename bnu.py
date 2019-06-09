@@ -10,7 +10,7 @@ rood7=[1, 7]
 rood8=[1, 8]
 rood9=[1, 9]
 rood10 = [1, 10] #pak twee kaarten
-rood11 = [4, 11] #invert gamedir
+rood11 = [1, 11] #invert gamedir
 
 green0 = [2, 0]
 green1 = [2, 1]
@@ -23,7 +23,7 @@ green7 = [2, 7]
 green8 = [2, 8]
 green9 = [2, 9]
 green10 = [2, 10] #pak twee kaarten
-green11 = [4, 11] #invert gamedir
+green11 = [2, 11] #invert gamedir
 
 blauw0 = [3, 0]
 blauw1 = [3, 1]
@@ -36,7 +36,7 @@ blauw7 = [3, 7]
 blauw8 = [3, 8]
 blauw9 = [3, 9]
 blauw10 = [3, 10] #pak twee kaarten
-blauw11 = [4, 11] #invert gamedir
+blauw11 = [3, 11] #invert gamedir
 
 yellow0 = [4, 0]
 yellow1 = [4, 1]
