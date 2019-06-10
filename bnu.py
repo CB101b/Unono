@@ -91,12 +91,11 @@ for i in range(4):
 playerid = 0
 
 def choosingcard(firstcard, playerid, gamedir):
-  for x in range(0, (len(players)-1)):
+  for x in range(0, (len(players))):
     topcard = allcards[firstcard]
     topcardnummer = topcard[1]
     topcardtype = topcard[0]
-    print(playerid)
-    print(gamedir)
+
     if topcardtype == 5 and topcardnummer == 0: #If there's a wild card these actions are taken
       print('\nYou got 2 cards...')
       addCard(players[playerid], 2)
@@ -116,8 +115,6 @@ def choosingcard(firstcard, playerid, gamedir):
         playerid = 1
       else:
         playerid += 1
-
-    print(playernames[playerid])
 
     print("\n It's now ", playernames[playerid], "'s turn")
     print ('The card on top is: ', topcard)
