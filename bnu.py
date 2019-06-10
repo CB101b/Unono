@@ -68,10 +68,10 @@ playernames = ['player1', 'player2', 'player3', 'player4']
 
 needHelp = input('Do you need help? (y to display, anythin else to continue) ')
 if needHelp == "y":
-  print('Alle spelers ontvangen aan het begin van het spel zeven kaarten. De overgebleven speelkaarten worden gesloten op de speeltafel gelegd, dit wordt ook wel de stock genoemd. Dan zal de eerste kaart van de stock worden opengelegd. De eerste speler kan vervolgens een kaart op deze kaart neerleggen, deze moet of hetzelfde nummer, kleur of symbool hebben. Voorbeeld, er ligt een rode 8, dan mag er een kaart met een 8 of een rode kleur op neergelegd worden. Een Joker kan ook worden neergelegd, dat is een uitzondering.Kan de speler geen kaart neerleggen, dan moet er een kaart van de stock worden gehaald. Deze mag direct neergelegd worden, maar als dat niet kan gaat de beurt over. Mocht een deelnemer nog maar één kaart overhebben, dan moet hij of zij UNO roepen. Vergeet de speler dat en speelt hij het spel uit, dan moeten er twee kaarten van de stock gehaald worden.')
+  print('Alle spelers ontvangen aan het begin van het spel zeven kaarten. De overgebleven speelkaarten worden gesloten op de speeltafel gelegd, dit wordt ook wel de stock genoemd. Dan zal de eerste kaart van de stock worden opengelegd. De eerste speler kan vervolgens een kaart op deze kaart neerleggen, deze moet of hetzelfde nummer, kleur of symbool hebben. Voorbeeld, er ligt een rode 8, dan mag er een kaart met een 8 of een rode kleur op neergelegd worden. Een Joker kan ook worden neergelegd, dat is een uitzondering. Kan de speler geen kaart neerleggen, dan moet er een kaart van de stock worden gehaald en gaat de beurt naar de volgende speler.')
   print('commands')
-  print('kaarten neerleggen: dit doe je door positie van de kaarten in de spelers hand te zeggen. Van 0 t/m (5),(je begint met tellen bij nul en niet bij 1')
-  print('kaarten pakken: dit doe je door -1 in te voeren.')
+  print('kaarten neerleggen: dit doe je door positie van de kaarten in de spelers hand te zeggen (je begint met tellen bij nul en niet bij 1).')
+  print('Speciale kaarten: (5, 1 is een joker met 4+ kaarten. 5, 0 is een joker met 2+ kaarten. Alle nummer, 10 kaarten geven 2+ kaarten. Alle nummer, 11 kaarten slaan de volgende beurt van de speler over.')
 
   #ga ff gekke kaulo help schrijven dreiries
 
@@ -125,7 +125,7 @@ def choosingcard(firstcard, playerid, gamedir):
     print ('The card on top is: ', topcard)
     print ('Your cards: ', players[playerid])
     
-    nummer=input('\n Choose a card: ')
+    nummer=int(input('\n Choose a card: '))
 
     if type(nummer) is not int:
       print('\nNot a valid card number...')
@@ -135,9 +135,7 @@ def choosingcard(firstcard, playerid, gamedir):
       print('what')
       addCard(players[playerid], 1)
       playerid += gamedir
-     
     elif type(nummer) is int:
-      nummer = int(nummer)
       if nummer > (len(players[playerid])-1): #If the player tpes a invalid number, this happens
         print('This number is too high or low')
         print('please try again')
