@@ -84,6 +84,7 @@ def addCard(playerinv, amount): #function to add a amount of cards to a inventor
 
 for i in range(4):
   addCard(players[i], 7)
+  
 
 # start spel
 
@@ -94,7 +95,8 @@ def choosingcard(firstcard, playerid, gamedir):
     topcard = allcards[firstcard]
     topcardnummer = topcard[1]
     topcardtype = topcard[0]
-
+    print(playerid)
+    print(gamedir)
     if topcardtype == 5 and topcardnummer == 0: #If there's a wild card these actions are taken
       print('\nYou got 2 cards...')
       addCard(players[playerid], 2)
@@ -106,10 +108,16 @@ def choosingcard(firstcard, playerid, gamedir):
       addCard(players[playerid], 2)
     elif topcardnummer == 11:
       print('\n Your turn is sadly skipped...')
-      if playerid == 4:
+      if playerid == 0:
+        playerid = 2
+      elif playerid == 1:
+        playerid = 0
+      elif playerid == 2:
         playerid = 1
       else:
         playerid += 1
+
+    print(playernames[playerid])
 
     print("\n It's now ", playernames[playerid], "'s turn")
     print ('The card on top is: ', topcard)
@@ -121,14 +129,21 @@ def choosingcard(firstcard, playerid, gamedir):
       print('\nNot a valid card number...')
       print('Skipping turn... \n')
       playerid += gamedir
-
+    elif nummer == -1:
+      print('what')
+      addCard(players[playerid], 1)
+      playerid += gamedir
+     
     elif type(nummer) is int:
       if nummer > (len(players[playerid])-1): #If the player tpes a invalid number, this happens
         print('This number is too high or low')
-        addCard(players[playerid], 1)
-        print('Skipping to next player...')
-        playerid += gamedir
-      
+        print('please try again')
+        choosingcard(firstcard, playerid, gamedir)
+      elif nummer < -1:
+        print('This number is too high or low')
+        print('please try again')
+        choosingcard(firstcard, playerid, gamedir)
+        
       if nummer == -1:
         ding = random.randint(0, (len(tempcards)-1))
         players[playerid].append(tempcards[ding])
@@ -150,6 +165,7 @@ def choosingcard(firstcard, playerid, gamedir):
           firstcard = allcards.index(firstcard)
           if len(players[playerid]) == 0:
             print(playernames[playerid], ' Has won!')
+            exit() 
           else:
             playerid += gamedir
         else:
@@ -160,14 +176,16 @@ def choosingcard(firstcard, playerid, gamedir):
         addCard(players[playerid], 1)
         playerid += gamedir
 
-  if playerid != 5:
+  if playerid == 5:
+    playerid = 0
+    print('check')
     choosingcard(firstcard, playerid, gamedir)
   else:
-    playerid = 1
+    playerid = 0
     choosingcard(firstcard, playerid, gamedir)
   
 
 gamedir = 1
 p = random.randint(1,len(tempcards))
-tempcards.pop(p)
+
 choosingcard(p, playerid, gamedir)
