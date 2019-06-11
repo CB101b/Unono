@@ -86,7 +86,7 @@ def addCard(playerinv, amount): #function to add a amount of cards to a inventor
     tempcards.pop(plo)
 
 for i in range(4):
-  addCard(players[i], 7)
+  addCard(players[i], 1)
   
 
 # start spel
@@ -144,7 +144,6 @@ def choosingcard(firstcard, playerid, gamedir):
             choosingcard(firstcard, playerid, gamedir)
           elif nummer < -1:
             print('This number is too high or low')
-            print('please try again')
             choosingcard(firstcard, playerid, gamedir)
             
           if nummer == -1:
@@ -172,9 +171,8 @@ def choosingcard(firstcard, playerid, gamedir):
               else:
                 playerid += gamedir
             else:
-              print('\n Ok, skipping turn...')
-              addCard(players[playerid], 1)
-              playerid += gamedir
+              print('\n Ok, you can try again')
+              choosingcard(firstcard, playerid, gamedir)
           else:
             print('Incompatible card... Skipping to next person...')
             time.sleep(1)
