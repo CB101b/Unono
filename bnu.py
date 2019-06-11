@@ -161,7 +161,7 @@ def choosingcard(firstcard, playerid, gamedir):
       kleurcheck = topcard[0]
       nummercheck = topcard[1]
       
-      if kleurcheck == kleurkaart and chosencard in players[x] or kleurcheck == 5  or kleurcheck == 6 or nummercheck == nummerkaart:
+      if kleurcheck == kleurkaart and chosencard in players[x] or kleurcheck == 5  or kleurcheck == 6 or kleurkaart == 5 or kleurkaart == 6 or nummercheck == nummerkaart:
         print('\n You can place this card on the stack!')
         if input('Are you sure you want to place this card? (y to place)') == "y":
           #verwijder het kaart uit het players hand en voeg hem toe aan de stapel
@@ -179,6 +179,7 @@ def choosingcard(firstcard, playerid, gamedir):
           playerid += gamedir
       else:
         print('Incompatible card... Skipping to next person...')
+        time.sleep(1)
         addCard(players[playerid], 1)
         playerid += gamedir
 
