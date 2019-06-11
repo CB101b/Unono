@@ -5,12 +5,12 @@ Uno, but it's a python script and doesnt have all the features of normal uno...
 ### Prerequisites
 You'ill need Python 3 or newer installed on your machine. To accomplish this: 
 
-In Ubuntu/Debian linux distros:
+In Ubuntu/Debian Linux distros:
 ```
 sudo apt install python
 ```
 
-In Arch linux:
+In Arch Linux:
 ```
 sudo pacman -S python
 ```
@@ -28,10 +28,13 @@ git clone https://github.com/CB101b/Unono/
 
 On windows just download the repository as zip and extract it or use Github Desktop.
 
-To run the program on all systems:
+To run the program on Linux:
 ```
 python bnu.py
 ```
+
+To run the prgram on Windows just run the 'start.bat' and it SHOULD start (It's still in development)
+
 
 ## Contributing
 To get your pull request into our code just add something valuable to it and it will most likely get through!
