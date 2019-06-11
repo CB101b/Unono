@@ -1,7 +1,7 @@
 # Unono
 
-One Paragraph of project description goes here
-
+Uno, but it's a python script and doesnt have all the features of normal uno...
+ But it's free?
 ### Prerequisites
 You'ill need Python 3 or newer installed on your machine. To accomplish this: 
 
