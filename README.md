@@ -23,7 +23,7 @@ How to install this project on your local machine:
 
 On all linux distros:
 ```
-git clone https://github.com/CB101b/Unono/new/master?readme=1
+git clone https://github.com/CB101b/Unono/
 ```
 
 ## Contributing
