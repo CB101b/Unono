@@ -26,6 +26,13 @@ On all linux distros:
 git clone https://github.com/CB101b/Unono/
 ```
 
+On windows just download the repository as zip and extract it or use Github Desktop.
+
+To run the program on all systems:
+```
+python bnu.py
+```
+
 ## Contributing
 To get your pull request into our code just add something valuable to it and it will most likely get through!
 
