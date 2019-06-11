@@ -86,7 +86,7 @@ def addCard(playerinv, amount): #function to add a amount of cards to a inventor
     tempcards.pop(plo)
 
 for i in range(4):
-  addCard(players[i], 1)
+  addCard(players[i], 7)
   
 
 # start spel
