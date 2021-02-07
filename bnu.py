@@ -80,7 +80,7 @@ elif needHelp == 'cards':
 
 #Give out cards
 
-def addCard(playerinv, amount): #function to add a amount of cards to a inventory
+def addCard(playerinv, amount): #function to add a amount of cards to aan inventory
   for x in range(amount):
     plo = random.randint(0, (len(tempcards)-1))
     playerinv.append(tempcards[plo])
