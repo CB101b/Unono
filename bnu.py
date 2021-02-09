@@ -6,6 +6,7 @@ deck = []
 deckPersistent = []
 playerDict={}
 
+# generates cards, puts them in a deck
 def genCard(colors, deck, deckPersistent):
 	for color in colors:
 		if color != 'wild' or 'quad':
@@ -25,4 +26,5 @@ def playerGen(playerDict, amount):
 
 
 genCard(colors, deck, deckPersistent)
-playerGen(playerDict, int(input("How many players?\n"))))
+amount = int(input("How many players?\n"))
+playerGen(playerDict, amount)
