@@ -31,7 +31,7 @@ def playerGen(playerDict, amount):
 def initialDealCards(playerDict, deck):
 	for player in playerDict:
 		for _ in range(7):
-			randomCard = deck[random.randint(0,len(deck))]
+			randomCard = deck[random.randint(0,len(deck)-1)]
 			playerDict[player].append(randomCard)
 			deck.remove(randomCard)
 
@@ -57,7 +57,19 @@ while not finished:
 		print("Available cards: ")
 		for x in playerCards: 
 			if len(x) == 2:
-				print(capital(x[0]),str(x[1]))
+				print(x[0],str(x[1]))
 			else:
-				print(capital(x))
-		input("Ses")
+				print(x)
+		
+		playedCard = input("Which card do you want to play?\n\n").split(" ")
+		if len(playedCard) > 1:
+			if len(playedCard[1]) == 1:
+				playedCard = (playedCard[0], int(playedCard[1]))
+			else:
+				playedCard = (playedCard[0], playedCard[1])
+		else:
+			playedCard = playedCard[0]
+
+		if playedCard in playerCards:
+			print(playedCard, "is erin")
+		else: print(playedCard, "is er niet in")
